@@ -43,3 +43,17 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
 };
+
+exports.getUser = (req, res, next) => {
+    User.findOne({_id: req.params.id})
+        .then(user => {
+            if (!user) {
+                return res.status(401).json({ message: 'Utilisateur inconnu'});
+            }
+            user.password = undefined;
+            res.status(200).json({
+                user: user
+            });
+        })
+        .catch(error => res.status(404).json({ error }));
+};
