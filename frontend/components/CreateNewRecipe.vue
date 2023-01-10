@@ -24,16 +24,13 @@
                 <v-col
                 cols="12"
                 >
-                    <v-textarea
-                        v-model="recipe.recipe"
-                        color="teal"
+                  <h2 class="mb-4">Description de la recette* :</h2>
+                    <VueEditor
+                      v-model="recipe.recipe"
                         :rules="recipeDescriptionRules"
                         label="Description de la recette*"
                         required>
-                        <template v-slot:label>
-                            <div>Description de la recette*</div>
-                        </template>
-                    </v-textarea>
+                    </VueEditor >
                 </v-col>
                 <v-col
                 cols="12"

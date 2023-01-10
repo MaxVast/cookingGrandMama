@@ -1,5 +1,5 @@
 <template>
-    <div :loading="$fetchState.pending">
+      <v-container :loading="$fetchState.pending">
         <v-row>
             <v-col>
                 <v-breadcrumbs
@@ -15,28 +15,45 @@
         </v-row>
         <v-row justify="center" align="center">
             <div class="col s6">
-                <p class="text-center">Temps de préparation : {{ recipe.preparationTime }}</p>
+                <p class="text-center">Temps de préparation : {{ recipe.preparationTime }} min</p>
             </div>
             <div class="col s6">
-                <p class="text-center">Temps de cuisson : {{ recipe.cookingTime }}</p>
+                <p class="text-center">Temps de cuisson : {{ recipe.cookingTime }} min</p>
             </div>
+        </v-row>
+        <v-row justify="center" align="center">
+          <v-col class="mx-auto my-2">
+            <h2>Les ingrédients :</h2>
+          </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
+          <v-card
+            v-for="(ingredient,  i) in recipe.ingredients"
+            :key="i"
+            :loading="$fetchState.pending"
+            class="mx-auto my-3"
+            min-width="200"
+            elevation="5"
+          >
+            <template slot="progress">
+              <v-progress-linear
+                color="sucess"
+                height="10"
+                indeterminate
+              ></v-progress-linear>
+            </template>
+
+            <v-card-title>{{ ingredient.quantity }}<span v-if="ingredient.mesure != 'unite'"> {{ ingredient.mesure }}</span></v-card-title>
+            <v-card-text>{{ ingredient.ingredient }}</v-card-text>
+          </v-card>
         </v-row>
         <v-row justify="center" align="center">
             <div class="col s12 mx-auto my-6">
                 <p v-html="recipe.recipe"></p>
                 <div class="divider"></div>
-                <ul>
-                    <li
-                        v-for="(ingredient,  i) in recipe.ingredients"
-                        :key="i"
-                    >
-                        {{ ingredient.quantity }} <span v-if="ingredient.mesure != 'unite'">{{ ingredient.mesure }}</span> {{ ingredient.ingredient }}
-                    </li>
-                </ul>
             </div>
         </v-row>
         <div class="mt-12 mx-auto row align-center justify-center" v-if="$auth.loggedIn == true && $auth.user.userId == recipe.userId">
-
             <div class="mx-auto my-6 align-center justify-center">
                 <v-btn
                     color="warning"
@@ -57,36 +74,35 @@
                 >supprimer votre recette</v-btn>
             </div>
         </div>
-
         <v-dialog
-            v-model="modalDelete"
-            max-width="600"
-            :loading="loading"
-            >
-            <v-card>
-                <v-card-title class="text-h5">
-                Voulez-vous vraiment supprimer cette recette ?
-                </v-card-title>
-                <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                    color="green darken-1"
-                    text
-                    @click="modalDelete = false"
-                >
-                    Annuler
-                </v-btn>
-                <v-btn
-                    color="red darken-1"
-                    text
-                    @click="deleteRecipe(recipe._id)"
-                >
-                    Supprimer
-                </v-btn>
-                </v-card-actions>
-            </v-card>
+          v-model="modalDelete"
+          max-width="600"
+          :loading="loading"
+        >
+          <v-card>
+            <v-card-title class="text-h5">
+              Voulez-vous vraiment supprimer cette recette ?
+            </v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="green darken-1"
+                text
+                @click="modalDelete = false"
+              >
+                Annuler
+              </v-btn>
+              <v-btn
+                color="red darken-1"
+                text
+                @click="deleteRecipe(recipe._id)"
+              >
+                Supprimer
+              </v-btn>
+            </v-card-actions>
+          </v-card>
         </v-dialog>
-    </div>
+      </v-container>
 </template>
 
 <script>

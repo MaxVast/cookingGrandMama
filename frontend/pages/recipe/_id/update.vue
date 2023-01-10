@@ -158,10 +158,9 @@ export default {
   methods: {
     async validate() {
       try {
-        console.log(this.recipe)
         this.recipe.ingredients = this.$refs.ListIngredients.listIngredients
         await this.$api.Api.updateRecipe(this.recipe._id, this.recipe)
-        await this.$router.push({name: 'recipe'})
+        await this.$router.push({name: 'recipe-id', params: { id: this.recipe._id} })
       } catch (e) {
         console.log(e)
       }

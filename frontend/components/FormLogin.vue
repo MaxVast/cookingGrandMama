@@ -5,7 +5,13 @@
     v-model="valid"
     lazy-validation
   >
-
+    <v-img
+      src="/images/cooking-grandmama_logo.png"
+      alt="Logo de cooking Grandmama, un cookie"
+      max-height="300"
+      max-width="300"
+    >
+    </v-img>
     <v-text-field
       v-model="email"
       :rules="emailRules"
@@ -49,7 +55,7 @@
       </v-col>
     </v-row>
   </v-form>
-  
+
 </template>
 
 <script>

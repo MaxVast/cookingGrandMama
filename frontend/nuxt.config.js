@@ -4,8 +4,8 @@ import path from 'path';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - frontend',
-    title: 'Grand\'s ma Cooking',
+    titleTemplate: '%s - website',
+    title: 'Cooking Grand\'s ma',
     htmlAttrs: {
       lang: 'en'
     },
@@ -16,7 +16,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'images/x-icon', href: '/favicon.ico' }
     ]
   },
 

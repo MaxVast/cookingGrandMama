@@ -24,7 +24,15 @@
         </v-list-item>
 
         <v-list-item-group>
-          <v-list-item class="mx-auto mt-12" v-if="$auth.loggedIn" @click.native="onLogout" >
+          <v-list-item class="mx-auto mt-12" v-if="$auth.loggedIn" :to="'/user'" router exact >
+            <v-list-item-action>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Mon compte</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item class="mx-auto mt-2" v-if="$auth.loggedIn" @click.native="onLogout" >
             <v-list-item-action>
               <v-icon>mdi-power</v-icon>
             </v-list-item-action>
@@ -79,7 +87,7 @@ export default {
         },
         {
           icon: 'mdi-cookie',
-          title: 'Recipe',
+          title: 'Recette',
           to: '/recipe'
         }
       ],
