@@ -22,8 +22,8 @@
             </div>
         </v-row>
         <v-row justify="center" align="center">
-            <div class="col s12">
-                <p class="mx-auto my-6">{{ recipe.recipe }}</p>
+            <div class="col s12 mx-auto my-6">
+                <p v-html="recipe.recipe"></p>
                 <div class="divider"></div>
                 <ul>
                     <li

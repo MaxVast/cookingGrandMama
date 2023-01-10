@@ -8,6 +8,9 @@ export default ({ $axios, baseUrl }) => ({
   createRecipe(recipe) {
     return $axios.post(`${baseUrl}/api/recipe`, recipe)
   },
+  updateRecipe(id, recipe) {
+    return $axios.put(`${baseUrl}/api/recipe/${id}`, recipe)
+  },
   deleteOneRecipe(id) {
     return $axios.delete(`${baseUrl}/api/recipe/${id}`)
   },

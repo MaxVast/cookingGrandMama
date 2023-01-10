@@ -34,7 +34,7 @@
               <v-col
                 cols="12"
               >
-                <v-textarea
+                <vue-editor
                   v-model="recipe.recipe"
                   color="teal"
                   :rules="recipeDescriptionRules"
@@ -43,7 +43,7 @@
                   <template v-slot:label>
                     <div>Description de la recette*</div>
                   </template>
-                </v-textarea>
+                </vue-editor>
               </v-col>
               <v-col
                 cols="12"
@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 export default {
   name: 'UpdateRecipePage',
   data(){
@@ -159,10 +158,9 @@ export default {
   methods: {
     async validate() {
       try {
-        const date = new Date()
+        console.log(this.recipe)
         this.recipe.ingredients = this.$refs.ListIngredients.listIngredients
-        this.recipe.createdAt = date.toISOString()
-        await this.$api.Api.createRecipe(this.recipe)
+        await this.$api.Api.updateRecipe(this.recipe._id, this.recipe)
         await this.$router.push({name: 'recipe'})
       } catch (e) {
         console.log(e)

@@ -15,10 +15,12 @@ exports.createRecipe = (req, res, next) => {
 };
 
 exports.updateOneRecipe = (req, res, next) => {
-    const recipeObject = req.file ? {
+    /*const recipeObject = req.file ? {
         ...JSON.parse(req.body.recipe),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body };
+    } : { ...req.body };*/
+
+    const recipeObject = req.body;
 
     Recipe.findOne({_id: req.params.id})
         .then((recipe) => {
@@ -31,7 +33,7 @@ exports.updateOneRecipe = (req, res, next) => {
             }
         })
         .catch((error) => {
-            res.status(400).json({ error });
+            res.status(400).json({ error }, console.log(error));
         });
 };
 
